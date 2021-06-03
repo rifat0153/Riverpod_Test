@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_test/providers/auth_providers.dart';
-import 'package:riverpod_test/services/auth_service.dart';
+import 'package:riverpod_test/repositories/auth_repository.dart';
 
 class AuthView extends HookWidget {
   AuthView({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class AuthView extends HookWidget {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            context.read(authServiceProvider).signOut();
+            context.read(authRepositoryProvider).signOut();
           },
           icon: Icon(Icons.logout),
         ),
@@ -38,7 +38,7 @@ class LoginView extends HookWidget {
       child: Center(
         child: MaterialButton(
           onPressed: () {
-            context.read(authServiceProvider).singInAnonoymously();
+            context.read(authRepositoryProvider).singInAnonoymously();
           },
           child: Text('Log in'),
         ),

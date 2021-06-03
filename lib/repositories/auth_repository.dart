@@ -3,12 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_test/providers/general_providers.dart';
 
-final authServiceProvider = Provider<AuthService>((ref) {
-  return AuthService(ref.read);
+final authRepositoryProvider = Provider<AuthRepository>((ref) {
+  return AuthRepository(ref.read);
 });
 
-class AuthService {
-  AuthService(this._read);
+class AuthRepository {
+  AuthRepository(this._read);
 
   Reader _read;
 
