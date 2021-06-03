@@ -1,24 +1,39 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_test/providers/auth_providers.dart';
-import 'dart:async';
+import 'package:riverpod_test/controllers/auth_controller.dart';
+import 'package:riverpod_test/models/todo.dart';
+import 'package:riverpod_test/repositories/todo_repository.dart';
 
-import 'package:riverpod_test/repositories/auth_repository.dart';
+final todoControllerProvider = Provider<TodoListController>((ref) {
+  final user = ref.watch(authControllerProvider);
 
-final todoListControllerProvider =
-    StateNotifierProvider<TodoListController, AsyncValue<List<Todo>>>((ref) {
-  final user = ref.watch(currentUserProvider);
-
-  return TodoListController(ref.read, '');
+  return TodoListController(ref.read, user?.uid);
 });
 
-class TodoListController extends StateNotifier<AsyncValue<List<Todo>>> {
+final todoListControllerProvider =
+    StateNotifierProvider<TodoListController, AsyncValue<List<MyTodo>>>((ref) {
+  final user = ref.watch(authControllerProvider);
+
+  return TodoListController(ref.read, user?.uid);
+});
+
+class TodoListController extends StateNotifier<AsyncValue<List<MyTodo>>> {
   TodoListController(this._read, this.userId) : super(AsyncValue.loading());
 
-  final String userId;
+  final String? userId;
   final Reader _read;
 
-  // StreamSubscription
+  Future<void> retrieveTodos({bool isRefreshing = false}) async {
+    if (isRefreshing) state = AsyncValue.loading();
+    try {
+      final todoList =
+          await _read(todoRepositoryProvider).retriveTodos(userId: userId!);
+
+      state = AsyncValue.data(todoList);
+      print('Todos List len: ' + todoList.length.toString());
+    } on Exception catch (e, s) {
+      state = AsyncValue.error(e, s);
+    }
+  }
 
   @override
   void dispose() {

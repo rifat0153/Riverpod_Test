@@ -12,55 +12,55 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Todo _$TodoFromJson(Map<String, dynamic> json) {
-  return _Todo.fromJson(json);
+MyTodo _$MyTodoFromJson(Map<String, dynamic> json) {
+  return _MyTodo.fromJson(json);
 }
 
 /// @nodoc
-class _$TodoTearOff {
-  const _$TodoTearOff();
+class _$MyTodoTearOff {
+  const _$MyTodoTearOff();
 
-  _Todo call({String? id, required String title, required String userId}) {
-    return _Todo(
+  _MyTodo call({String? id, required String title, required String userId}) {
+    return _MyTodo(
       id: id,
       title: title,
       userId: userId,
     );
   }
 
-  Todo fromJson(Map<String, Object> json) {
-    return Todo.fromJson(json);
+  MyTodo fromJson(Map<String, Object> json) {
+    return MyTodo.fromJson(json);
   }
 }
 
 /// @nodoc
-const $Todo = _$TodoTearOff();
+const $MyTodo = _$MyTodoTearOff();
 
 /// @nodoc
-mixin _$Todo {
+mixin _$MyTodo {
   String? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TodoCopyWith<Todo> get copyWith => throw _privateConstructorUsedError;
+  $MyTodoCopyWith<MyTodo> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TodoCopyWith<$Res> {
-  factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
-      _$TodoCopyWithImpl<$Res>;
+abstract class $MyTodoCopyWith<$Res> {
+  factory $MyTodoCopyWith(MyTodo value, $Res Function(MyTodo) then) =
+      _$MyTodoCopyWithImpl<$Res>;
   $Res call({String? id, String title, String userId});
 }
 
 /// @nodoc
-class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
-  _$TodoCopyWithImpl(this._value, this._then);
+class _$MyTodoCopyWithImpl<$Res> implements $MyTodoCopyWith<$Res> {
+  _$MyTodoCopyWithImpl(this._value, this._then);
 
-  final Todo _value;
+  final MyTodo _value;
   // ignore: unused_field
-  final $Res Function(Todo) _then;
+  final $Res Function(MyTodo) _then;
 
   @override
   $Res call({
@@ -86,21 +86,21 @@ class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
-  factory _$TodoCopyWith(_Todo value, $Res Function(_Todo) then) =
-      __$TodoCopyWithImpl<$Res>;
+abstract class _$MyTodoCopyWith<$Res> implements $MyTodoCopyWith<$Res> {
+  factory _$MyTodoCopyWith(_MyTodo value, $Res Function(_MyTodo) then) =
+      __$MyTodoCopyWithImpl<$Res>;
   @override
   $Res call({String? id, String title, String userId});
 }
 
 /// @nodoc
-class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
-    implements _$TodoCopyWith<$Res> {
-  __$TodoCopyWithImpl(_Todo _value, $Res Function(_Todo) _then)
-      : super(_value, (v) => _then(v as _Todo));
+class __$MyTodoCopyWithImpl<$Res> extends _$MyTodoCopyWithImpl<$Res>
+    implements _$MyTodoCopyWith<$Res> {
+  __$MyTodoCopyWithImpl(_MyTodo _value, $Res Function(_MyTodo) _then)
+      : super(_value, (v) => _then(v as _MyTodo));
 
   @override
-  _Todo get _value => super._value as _Todo;
+  _MyTodo get _value => super._value as _MyTodo;
 
   @override
   $Res call({
@@ -108,7 +108,7 @@ class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
     Object? title = freezed,
     Object? userId = freezed,
   }) {
-    return _then(_Todo(
+    return _then(_MyTodo(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -127,12 +127,12 @@ class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Todo extends _Todo {
-  const _$_Todo({this.id, required this.title, required this.userId})
+class _$_MyTodo extends _MyTodo {
+  const _$_MyTodo({this.id, required this.title, required this.userId})
       : super._();
 
-  factory _$_Todo.fromJson(Map<String, dynamic> json) =>
-      _$_$_TodoFromJson(json);
+  factory _$_MyTodo.fromJson(Map<String, dynamic> json) =>
+      _$_$_MyTodoFromJson(json);
 
   @override
   final String? id;
@@ -143,13 +143,13 @@ class _$_Todo extends _Todo {
 
   @override
   String toString() {
-    return 'Todo(id: $id, title: $title, userId: $userId)';
+    return 'MyTodo(id: $id, title: $title, userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Todo &&
+        (other is _MyTodo &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.title, title) ||
@@ -167,21 +167,21 @@ class _$_Todo extends _Todo {
 
   @JsonKey(ignore: true)
   @override
-  _$TodoCopyWith<_Todo> get copyWith =>
-      __$TodoCopyWithImpl<_Todo>(this, _$identity);
+  _$MyTodoCopyWith<_MyTodo> get copyWith =>
+      __$MyTodoCopyWithImpl<_MyTodo>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_TodoToJson(this);
+    return _$_$_MyTodoToJson(this);
   }
 }
 
-abstract class _Todo extends Todo {
-  const factory _Todo(
-      {String? id, required String title, required String userId}) = _$_Todo;
-  const _Todo._() : super._();
+abstract class _MyTodo extends MyTodo {
+  const factory _MyTodo(
+      {String? id, required String title, required String userId}) = _$_MyTodo;
+  const _MyTodo._() : super._();
 
-  factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
+  factory _MyTodo.fromJson(Map<String, dynamic> json) = _$_MyTodo.fromJson;
 
   @override
   String? get id => throw _privateConstructorUsedError;
@@ -191,5 +191,5 @@ abstract class _Todo extends Todo {
   String get userId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$TodoCopyWith<_Todo> get copyWith => throw _privateConstructorUsedError;
+  _$MyTodoCopyWith<_MyTodo> get copyWith => throw _privateConstructorUsedError;
 }

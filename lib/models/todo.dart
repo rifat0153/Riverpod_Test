@@ -5,14 +5,14 @@ part 'todo.freezed.dart';
 part 'todo.g.dart';
 
 @freezed
-class Todo with _$Todo {
-  const Todo._();
+class MyTodo with _$MyTodo {
+  const MyTodo._();
 
-  const factory Todo({
+  const factory MyTodo({
     String? id,
     required String title,
     required String userId,
-  }) = _Todo;
+  }) = _MyTodo;
 
-  factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
+  factory MyTodo.fromJson(Map<String, dynamic> json) => _$MyTodoFromJson(json);
 }

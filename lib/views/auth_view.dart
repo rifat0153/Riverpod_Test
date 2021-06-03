@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_test/providers/auth_providers.dart';
 import 'package:riverpod_test/repositories/auth_repository.dart';
+import 'package:riverpod_test/views/todos_view.dart';
 
 class AuthView extends HookWidget {
   AuthView({Key? key}) : super(key: key);
@@ -20,9 +21,7 @@ class AuthView extends HookWidget {
           icon: Icon(Icons.logout),
         ),
       ),
-      body: Center(
-        child: Text('Loggeed In'),
-      ),
+      body: TodosView(),
     );
   }
 }
