@@ -25,12 +25,10 @@ class TodosView extends HookWidget {
         ),
       ),
       floatingActionButton: TextButton(
-        onPressed: ()  {
-           context
-              .read(todoListControllerProvider)
-              .data
-              ?.value
-              .add(MyTodo(title: 'new todo', userId: 'new user', id: '123'));
+        onPressed: () {
+          context
+              .read(todoListControllerProvider.notifier)
+              .retrieveTodos(isRefreshing: true);
         },
         child: Text('Load Todos'),
       ),

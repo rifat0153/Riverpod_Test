@@ -37,7 +37,7 @@ class LoginView extends HookWidget {
       child: Center(
         child: MaterialButton(
           onPressed: () {
-            context.read(authRepositoryProvider).singInAnonoymously();
+            context.read(authRepositoryProvider).signInWithEmail();
           },
           child: Text('Log in'),
         ),

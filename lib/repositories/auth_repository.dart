@@ -12,6 +12,13 @@ class AuthRepository {
 
   Reader _read;
 
+  Future<User?> signInWithEmail() async {
+    var auth = _read(authProvider);
+
+    await auth.signInWithEmailAndPassword(
+        email: 'user@gmail.com', password: '123456');
+  }
+
   Future<User?> singInAnonoymously() async {
     var auth = _read(authProvider);
 

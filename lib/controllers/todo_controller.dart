@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_test/controllers/auth_controller.dart';
 import 'package:riverpod_test/models/todo.dart';
@@ -22,14 +24,21 @@ class TodoListController extends StateNotifier<AsyncValue<List<MyTodo>>> {
   final String? userId;
   final Reader _read;
 
+  StreamSubscription<List<MyTodo>>? todoSubcription;
+
   Future<void> retrieveTodos({bool isRefreshing = false}) async {
     if (isRefreshing) state = AsyncValue.loading();
     try {
-      final todoList =
-          await _read(todoRepositoryProvider).retriveTodos(userId: userId!);
+      // final todoList =
+      //     await _read(todoRepositoryProvider).retriveTodos(userId: userId!);
 
-      state = AsyncValue.data(todoList);
-      print('Todos List len: ' + todoList.length.toString());
+      todoSubcription?.cancel();
+      todoSubcription = _read(todoRepositoryProvider)
+          .retriveTodosStream(userId: userId!)
+          .listen((todoList) => state = AsyncValue.data(todoList));
+
+      // state = AsyncValue.data(todoList);
+      // print('Todos List len: ' + todoList.length.toString());
     } on Exception catch (e, s) {
       state = AsyncValue.error(e, s);
     }
@@ -37,6 +46,7 @@ class TodoListController extends StateNotifier<AsyncValue<List<MyTodo>>> {
 
   @override
   void dispose() {
+    todoSubcription?.cancel();
     super.dispose();
   }
 }
