@@ -57,7 +57,7 @@ class __BuildListTileState extends State<_BuildListTile> with TickerProviderStat
       });
     });
 
-    _animationController = AnimationController(duration: Duration(milliseconds: 500), vsync: this);
+    _animationController = AnimationController(duration: Duration(milliseconds: 200), vsync: this);
   }
 
   @override
@@ -66,8 +66,8 @@ class __BuildListTileState extends State<_BuildListTile> with TickerProviderStat
         key: _listKey,
         initialItemCount: _todoTiles.length,
         itemBuilder: (context, index, animation) {
-          return SlideTransition(
-            position: animation.drive(_offset),
+          return FadeTransition(
+            opacity: animation,
             child: Text(widget.todos[index].title),
           );
         });

@@ -5,16 +5,15 @@ import 'package:riverpod_test/controllers/auth_controller.dart';
 import 'package:riverpod_test/models/todo.dart';
 import 'package:riverpod_test/repositories/todo_repository.dart';
 
-final todoListControllerProvider = StateNotifierProvider<TodoListController, AsyncValue<List<MyTodo>>>((ref) {
+final todoListControllerProvider =
+    StateNotifierProvider.autoDispose<TodoListController, AsyncValue<List<MyTodo>>>((ref) {
   final user = ref.watch(authControllerProvider.notifier).getUser();
 
   return TodoListController(ref.read, user?.uid)..retrieveTodos();
 });
 
 class TodoListController extends StateNotifier<AsyncValue<List<MyTodo>>> {
-  TodoListController(this._read, this.userId) : super(AsyncValue.data([])) {
-    // retrieveTodos();
-  }
+  TodoListController(this._read, this.userId) : super(AsyncValue.data([]));
 
   final String? userId;
   final Reader _read;
