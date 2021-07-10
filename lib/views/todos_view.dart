@@ -30,7 +30,7 @@ class TodosView extends StatelessWidget {
 class _BuildListTile extends StatefulWidget {
   _BuildListTile({Key? key, required this.todos}) : super(key: key);
 
-  List<MyTodo> todos;
+  final List<MyTodo> todos;
 
   @override
   __BuildListTileState createState() => __BuildListTileState();
@@ -46,34 +46,18 @@ class __BuildListTileState extends State<_BuildListTile> with TickerProviderStat
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
-      _addTodos();
-    });
-
-    _animationController = AnimationController(duration: Duration(milliseconds: 500), vsync: this);
-  }
-
-  void _addTodos() {
-    // get data from db
-    List<MyTodo> _todos = widget.todos;
-
+    // Code to Stagger Load ListView data on INIT VIEW
     Future ft = Future(() {});
-    _todos.forEach((MyTodo trip) {
+    widget.todos.forEach((MyTodo todo) {
       ft = ft.then((data) {
-        return Future.delayed(const Duration(milliseconds: 100), () {
-          _todoTiles.add(_buildTile(trip));
-          _listKey.currentState?.insertItem(_todoTiles.length - 1);
+        return Future.delayed(const Duration(milliseconds: 200), () {
+          int index = widget.todos.indexOf(todo);
+          _listKey.currentState?.insertItem(index);
         });
       });
     });
-  }
 
-  Widget _buildTile(MyTodo todo) {
-    return ListTile(
-      onTap: () {},
-      contentPadding: EdgeInsets.all(25),
-      title: Text(todo.title),
-    );
+    _animationController = AnimationController(duration: Duration(milliseconds: 500), vsync: this);
   }
 
   @override
@@ -84,7 +68,7 @@ class __BuildListTileState extends State<_BuildListTile> with TickerProviderStat
         itemBuilder: (context, index, animation) {
           return SlideTransition(
             position: animation.drive(_offset),
-            child: _todoTiles[index],
+            child: Text(widget.todos[index].title),
           );
         });
   }
